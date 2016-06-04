@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+// var jQuery = require('jquery');
 
 module.exports = {
     entry: [
@@ -7,9 +8,20 @@ module.exports = {
         'webpack-dev-server/client?http://localhost:8080',
         path.resolve(__dirname, 'app/main.js')
     ],
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.scss']
-    },
+    // resolve: {
+    //     extensions: ['', '.js', '.jsx', '.scss'],
+    //     alias: {
+    //         jquery: "jquery/dist/jquery"
+    //     }
+    // },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
+        })
+    ],
+    // externals: { 'jquery': 'jQuery' },
     module: {
         loaders: [{
             test: /\.less$/,
@@ -18,7 +30,7 @@ module.exports = {
         }, {
             test: /\.scss$/,
             exclude: /node_modules/,
-            loader: 'style!css!sass'
+            loaders: ["style", "css", "sass"]
         }, {
             test: /\.jsx?$/,
             loader: 'babel-loader',
@@ -30,10 +42,17 @@ module.exports = {
             test: /\.(png|woff|woff2|eot|ttf|svg)$/,
             exclude: /node_modules/,
             loader: 'url-loader?limit=100000'
-        }]
+        }, {
+            test: require.resolve("jquery"),
+            loader: "imports?jQuery=jquery"
+        }
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
+    },
+    sassLoader: {
+        includePaths: [path.resolve(__dirname, "./app/styles")]
     }
 };

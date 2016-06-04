@@ -30,7 +30,7 @@ module.exports = {
         }, {
             test: /\.scss$/,
             exclude: /node_modules/,
-            loader: 'style!css!sass'
+            loaders: ["style", "css", "sass"]
         }, {
             test: /\.jsx?$/,
             loader: 'babel-loader',
@@ -51,5 +51,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
+    },
+    sassLoader: {
+        includePaths: [path.resolve(__dirname, "./app/styles")]
     }
 };

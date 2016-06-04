@@ -1,9 +1,29 @@
 body {
   background: #e9eaed;
 
-  .row {
-    .col {
-
+  .card {
+    .card-title {
+      .chip {
+        margin: -5px 5px 0 5px;
+      }
     }
   }
+
+  .collection-item {
+    a.collection-item {
+
+      &.not-selected, &.active {
+        cursor: pointer;
+      }
+
+      &.disabled {
+        color: #ddd;
+
+        &:hover {
+          background: #fff;
+        }
+      }
+    }
+  }
+
 }

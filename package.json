@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
+    "start": "webpack-dev-server --port 8080 --devtool eval --progress --colors --hot --content-base build"
   },
   "repository": {},
   "keywords": [],
@@ -23,13 +23,18 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "alt": "^0.18.4",
+    "alt-container": "^1.0.2",
+    "file-loader": "^0.8.5",
     "imports-loader": "^0.6.5",
     "jquery": "^2.2.3",
     "materialize-css": "^0.97.5",
+    "node-sass": "^3.7.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-google-maps": "^4.9.1",
     "react-router": "^2.0.1",
+    "sass-loader": "^3.2.0",
     "url-loader": "^0.5.7"
   }
 }
