@@ -7,7 +7,7 @@ class YourTicketsStore {
         this.tickets = [];
 
         this.bindListeners({
-            onGetTickets: YourTicketsActions.getTickets
+            onGetTickets: YourTicketsActions.getTicketsDispatcher
         });
     }
 

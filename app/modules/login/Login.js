@@ -7,13 +7,18 @@ import LoginActions from '../../actions/LoginActions';
 import LoginStore from '../../stores/LoginStore';
 
 export default class Login extends React.Component {
-    loginAction(login, password, rememberLogin) {
+    logIn(login, password, rememberLogin) {
         LoginActions.logIn(login, password, rememberLogin);
+    }
+
+    logInOwner(login, password, rememberLogin) {
+        LoginActions.logInOwner(login, password, rememberLogin);
     }
 
     render() {
         return <AltContainer store={LoginStore}>
-            <LoginView loginAction={this.loginAction}/>
+            <LoginView logIn={this.logIn}
+                       logInOwner={this.logInOwner}/>
         </AltContainer>;
     }
 }

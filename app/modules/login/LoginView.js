@@ -8,7 +8,8 @@ export default class LoginView extends React.Component {
         this.state = {
             login: "",
             password: "",
-            rememberLogin: false
+            rememberLogin: false,
+            owner: false
         }
     }
 
@@ -24,6 +25,18 @@ export default class LoginView extends React.Component {
         this.setState({rememberLogin: e.target.checked});
     }
 
+    onChangeOwner(value) {
+        this.setState({owner: value});
+    }
+
+    login() {
+        if(this.state.owner) {
+            this.props.logInOwner(this.state.login, this.state.password, this.state.repeatPassword, this.state.email, this.state.name);
+        } else {
+            this.props.logIn(this.state.login, this.state.password, this.state.repeatPassword, this.state.email, this.state.name, this.state.surname);
+        }
+    }
+
     render() {
         return <Row>
             <Col s={6} os={3}>
@@ -32,8 +45,8 @@ export default class LoginView extends React.Component {
                         <Card.Title>Logowanie</Card.Title>
                         <Col s={12}>
                             <ul className="tabs">
-                                <li className="tab col s3"><a href="#test1">Użytkownik</a></li>
-                                <li className="tab col s3"><a href="#test2">Linie lotnicze</a></li>
+                                <li className="tab col s3"><a href="#test1" onClick={this.onChangeOwner.bind(this, false)}>Użytkownik</a></li>
+                                <li className="tab col s3"><a href="#test2" onClick={this.onChangeOwner.bind(this, true)}>Linie lotnicze</a></li>
                             </ul>
                         </Col>
                         <Col id="test1" s={12}>
@@ -87,7 +100,7 @@ export default class LoginView extends React.Component {
                         </Col>
                     </Card.Content>
                     <Card.Action style={{textAlign: "right"}}>
-                        <a onClick={this.props.loginAction.bind(this, this.state.login, this.state.password, this.state.rememberLogin)}>Zaloguj</a>
+                        <a onClick={::this.login}>Zaloguj</a>
                     </Card.Action>
                 </Card>
             </Col>

@@ -5,6 +5,7 @@ import ApplicationView from './ApplicationView';
 
 import LoginActions from '../../actions/LoginActions';
 import LoginStore from '../../stores/LoginStore';
+import SearchStore from '../../stores/SearchStore';
 
 export default class Login extends React.Component {
     logoutAction() {
@@ -12,7 +13,7 @@ export default class Login extends React.Component {
     }
 
     render() {
-        return <AltContainer store={LoginStore}>
+        return <AltContainer stores={{LoginStore: LoginStore, SearchStore: SearchStore}}>
             <ApplicationView {...this.props} logoutAction={this.logoutAction}/>
         </AltContainer>;
     }

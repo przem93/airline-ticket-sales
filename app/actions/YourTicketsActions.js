@@ -2,32 +2,27 @@ import alt from  '../alt';
 
 class YourTicketsActions {
     constructor() {
-        
+
     }
 
-    getTickets() {
-        return [
-            {
-                from: "Poznań",
-                to: "Warszawa",
-                price: 300.45
+    getTickets(userId) {
+        $.ajax({
+            type: 'GET',
+            url: `http://188.213.173.106:8080/webapp/getTickets?id=${userId}`,
+            xhrFields: {
+                withCredentials: false
             },
-            {
-                from: "Poznań",
-                to: "Warszawa",
-                price: 300.45
+            success: (data, a, response) => {
+                this.getTicketsDispatcher(data)
             },
-            {
-                from: "Poznań",
-                to: "Warszawa",
-                price: 300.45
-            },
-            {
-                from: "Poznań",
-                to: "Warszawa",
-                price: 300.45
+            error: (err) => {
+                Materialize.toast('Błąd podczas rejestracji!', 4000);
             }
-        ];
+        });
+    }
+
+    getTicketsDispatcher(data) {
+        return data;
     }
 }
 

@@ -8,7 +8,9 @@ import YourTicketsStore from '../../stores/YourTicketsStore';
 
 export default class YourTickets extends React.Component {
     componentDidMount() {
-        YourTicketsActions.getTickets();
+        let id = localStorage.userId ? localStorage.userId : sessionStorage.userId;
+
+        YourTicketsActions.getTickets(id);
     }
     
     render() {
